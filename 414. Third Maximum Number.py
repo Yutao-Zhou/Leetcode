@@ -1,27 +1,23 @@
+   
 class Solution:
     def thirdMax(self, nums: List[int]) -> int:
         ###### bad solution ####
-        cach1 = 0
-        cach2 = 0
-        cach3 = 0
+        cach = [-2 ** 33,-2 ** 33,-2 ** 33]
         for i in nums:
-            print(cach1,cach2,cach3)
-            if nums != cach1 and nums != cach2 and nums != cach3:
-                if i > cach1:
-                    if cach1 > cach2:
-                        cach2 = cach1
-                    cach1 = i
-                elif i > cach2:
-                    if cach2 > cach3:
-                        cach3 = cach2
-                    cach2 = i
-                elif i > cach3:
-                    cach3 = i
-            print(cach1,cach2,cach3)
+            if i != cach[0] and i != cach[1] and i != cach[2]:
+                if i > cach[0]:
+                    cach.insert(0,i)
+                    cach.pop()
+                elif i > cach[1]:
+                    cach.insert(1,i)
+                    cach.pop()
+                elif i > cach[2]:
+                    cach.insert(2,i)
+                    cach.pop()
         if len(set(nums)) < 3:
-            return cach1
+            return cach[0]
         else:
-            return cach3
+            return cach[2]
         
         ###### set and sort not doing the problem#######
         # nums = set(nums)
@@ -50,5 +46,3 @@ class Solution:
         #     return ck[0]
         # else:
         #     return ck[2]
-        
-        
