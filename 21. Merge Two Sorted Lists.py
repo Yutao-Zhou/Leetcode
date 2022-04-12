@@ -22,11 +22,25 @@ class Solution:
         # return realAns.next
         
         #### merge ####
+        # if list1 == None or list2 == None:
+        #     return list1 or list2
+        # if list1.val < list2.val:
+        #     list1.next = self.mergeTwoLists(list1.next, list2)
+        #     return list1
+        # else:
+        #     list2.next = self.mergeTwoLists(list1, list2.next)
+        #     return list2
+        
+        #### recursive ####
         if list1 == None or list2 == None:
             return list1 or list2
-        if list1.val < list2.val:
-            list1.next = self.mergeTwoLists(list1.next, list2)
-            return list1
-        else:
-            list2.next = self.mergeTwoLists(list1, list2.next)
-            return list2
+        def recursive(list1 , list2):
+            if list1 == None or list2 == None:
+                return list1 or list2
+            if list1.val > list2.val:
+                list2.next = recursive(list1 , list2.next)
+                return list2
+            if list1.val <= list2.val:
+                list1.next = recursive(list1.next, list2)
+                return list1 
+        return recursive(list1 , list2)

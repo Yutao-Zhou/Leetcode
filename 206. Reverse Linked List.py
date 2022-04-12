@@ -5,6 +5,26 @@
 #         self.next = next
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        #### recursive ####
+        def recursive(head):
+            if not head or not head.next:
+                return head
+            node = recursive(head.next)
+            head.next.next = head
+            head.next = None
+            return node
+        return recursive(head)
+        
+        #### iterative ####
+        # prev = None
+        # curr = head
+        # while curr:
+        #     n = curr.next
+        #     curr.next = prev
+        #     prev = curr
+        #     curr = n
+        # return prev
+    
         #### get value and creat, not real solution ####
         # if head == None:
         #     return ListNode("")
@@ -20,12 +40,3 @@ class Solution:
         #     ans.next = ListNode(i)
         #     ans = ans.next
         # return realAns.next
-        
-        #### swap ####
-        previous = None
-        while head:
-            current = head
-            head = head.next
-            current.next = previous
-            previous = current
-        return previous
