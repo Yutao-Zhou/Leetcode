@@ -146,9 +146,27 @@ class Solution:
         # return nums
         
         #### heapq ####
-        import heapq
-        heapq.heapify(nums)
-        ans = []
-        for i in range(len(nums)):
-            ans.append(heapq.heappop(nums))
-        return ans
+        # import heapq
+        # heapq.heapify(nums)
+        # ans = []
+        # for i in range(len(nums)):
+        #     ans.append(heapq.heappop(nums))
+        # return ans
+        
+        #### shell sort ####
+        def insertSort(nums, gap):
+            for i in range(gap, len(nums)):
+                tmp = nums[i]
+                j = i - gap
+                while j >= 0 and tmp < nums[j]:
+                    nums[j + gap] = nums[j]
+                    j -= gap
+                nums[j + gap] = tmp
+            return nums
+        def shellSort(nums):
+            d = len(nums) // 2
+            while d >= 1:
+                nums = insertSort(nums, d)
+                d //= 2
+            return nums
+        return shellSort(nums)
