@@ -5,12 +5,12 @@ class MinStack:
 
     def push(self, val: int) -> None:
         if self.stack:
-            self.stack.append((val, min(val, self.stack[-1][1])))
-        elif not self.stack:
+            self.stack.append((val, min(self.stack[-1][1], val)))
+        else:
             self.stack.append((val, val))
 
     def pop(self) -> None:
-        return self.stack.pop()[0]
+        self.stack.pop()
 
     def top(self) -> int:
         return self.stack[-1][0]
