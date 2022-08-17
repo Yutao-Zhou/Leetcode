@@ -17,15 +17,24 @@ class Solution:
         # return check( node = root, lower = float("-inf"), upper = float("inf") )
         
         #### inorder recursive ####
-        def inorder(root, path):
-            if root:
-                inorder(root.left, path)
-                path.append(root.val)
-                inorder(root.right, path)
-                return path
-        path = []
-        inorder(root, path)
-        for i in range(1, len(path)):
-            if path[i] <= path[i - 1]:
+        # def inorder(root, path):
+        #     if root:
+        #         inorder(root.left, path)
+        #         path.append(root.val)
+        #         inorder(root.right, path)
+        #         return path
+        # path = []
+        # inorder(root, path)
+        # for i in range(1, len(path)):
+        #     if path[i] <= path[i - 1]:
+        #         return False
+        # return True
+        
+        #### Divide and Conquer ####
+        def valid(node, l, h):
+            if not node:
+                return True
+            if not l < node.val < h:
                 return False
-        return True
+            return valid(node.left, l, node.val) and valid(node.right, node.val, h)
+        return valid(root, float('-inf'), float('inf'))
