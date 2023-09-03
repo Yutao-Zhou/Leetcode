@@ -1,0 +1,30 @@
+/**
+ * @param {Promise} promise1
+ * @param {Promise} promise2
+ * @return {Promise}
+ */
+var addTwoPromises = async function(promise1, promise2) {
+    // Promise 
+    // try{
+    //     const [p1, p2] = await Promise.all([promise1, promise2]);
+    //     return p1 + p2;        
+    // } catch(error) {
+    //     console.error(error);
+    //     throw error;
+    // }
+
+    // Just Wait
+    try {
+        let p1 = await promise1;
+        let p2 = await promise2;
+        return p1 + p2;
+    } catch(error) {
+        console.error(error);
+        throw error;
+    }
+};
+
+/**
+ * addTwoPromises(Promise.resolve(2), Promise.resolve(2))
+ *   .then(console.log); // 4
+ */
